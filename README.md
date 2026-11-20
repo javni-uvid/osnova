@@ -11,6 +11,7 @@ work, security, and the tools. Each project stays a repository of its own and ta
 |---|---|
 | [zailiprotiv](https://github.com/javni-uvid/zailiprotiv) | How the MPs of Serbia's National Assembly vote, since 2012 |
 | [izborna-analiza](https://github.com/javni-uvid/izborna-analiza) | Every results file of Serbia's electoral commission kept, and every polling station checked by the same rules |
+| [ucestvuj](https://github.com/javni-uvid/ucestvuj) | How a person takes part in decisions where they live: guides, deadlines and addresses (started 20 Nov 2026; no site yet) |
 
 ## What is here
 
