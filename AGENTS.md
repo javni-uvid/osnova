@@ -5,7 +5,7 @@ takes a copy (README.md). The rules of work in `shared/work.md` hold here too; t
 repository's.
 
 - **`shared/principles.md` is the maintainer's.** A pull request that changes it is opened with
-  `sh tools/posalji.sh <body file> --ne-spajaj` and left for them to merge. Everything else is merged by the
+  `sh shared/tools/posalji.sh <body file> --ne-spajaj` and left for them to merge. Everything else is merged by the
   agent once **test** passes.
 - **What goes here:** a rule, a guard or a tool that holds for every project. What only one project needs stays
   in that project, even when it is well made. Before moving something here, read how the other projects do it
@@ -16,6 +16,8 @@ repository's.
   `for p in $(cat projects.txt); do gh workflow run osnova -R "$p"; done`.
 - **A project may be stricter, never looser,** unless its AGENTS.md says so with the date of the maintainer's
   decision. A change here that would make a project's own rule wrong is told in the pull request.
+- **The tools are run from `shared/tools/` here** (`git config core.hooksPath shared/tools/hooks`); a project runs
+  them through its own `tools/`, which only call the copy in its `osnova/tools/`.
 - **Tests:** `sh tools/proveri.sh` (the scripts parse, the workflows pass actionlint and zizmor). The **test**
   workflow runs it on every pull request and on `main`.
 - **Talk to the maintainer in Serbian** (Latin script), briefly. Code, comments and docs are in English.
