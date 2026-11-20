@@ -19,14 +19,16 @@ work, security, and the tools. Each project stays a repository of its own and ta
 | `shared/principles.md` | The promises every project makes to its readers. Changed by the maintainer only. |
 | `shared/work.md` | How to work in a project: a branch and a pull request per task, tests, decisions written down. |
 | `shared/security.md` | What every project guards and how; the settings a new repository gets. |
-| `tools/` | `posalji.sh` (a task's branch to `main`), `pocisti.sh` (merged worktrees removed), the pre-push hook. |
-| `template/` | What a project copies once: the **osnova** workflow. |
+| `shared/tools/` | `posalji.sh` (a task's branch to `main`), `pocisti.sh` (merged worktrees removed), the pre-push hook. |
+| `template/` | What a project copies once: the **osnova** workflow, and `tools/` whose scripts only call the copy's. |
 | `projects.txt` | The projects that take the copy. |
 
 ## How a project takes it
 
 A project has the **osnova** workflow (`template/.github/workflows/osnova.yml`). Daily, and when started by hand,
-it copies `shared/` into the project's `osnova/` folder and commits it. So an agent working in a project, and a
+it copies `shared/` into the project's `osnova/` folder and commits it. The project's `tools/posalji.sh`,
+`tools/pocisti.sh` and `tools/hooks/pre-push` are one line each: they run the copy's, so a fix here reaches every
+project. So an agent working in a project, and a
 workflow running there, have the rules in that repository; nobody has to look here first.
 
 A project's own AGENTS.md holds what is only its own, and its own principles. It may be stricter than what is

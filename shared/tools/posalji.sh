@@ -4,6 +4,7 @@
 # **test** check has started and passed, and squash-merge. A check that has not started yet is not "passed": on
 # 20 Nov 2026 a pull request was merged before its test began.
 #   sh tools/posalji.sh [<file with the PR body>] [--ne-spajaj]
+# This is the copy every project runs (javni-uvid/osnova, shared/tools/): a project's tools/posalji.sh only calls it.
 # --ne-spajaj stops after the check, for a pull request the maintainer merges (a principle, DNS, what is seen outside).
 # After a merge it runs tools/pocisti.sh: the worktrees whose pull requests were merged earlier go.
 set -eu
@@ -57,7 +58,7 @@ gh pr checks "$pr" | grep -q '^test[[:space:]]*pass' || { echo "posalji: test ni
 if [ "$merge" = 1 ]; then
   gh pr merge "$pr" --squash --delete-branch || gh pr view "$pr" --json state -q .state | grep -q MERGED
   echo "posalji: #$pr je spojen."
-  sh tools/pocisti.sh || echo "posalji: pocisti nije uspeo; worktree-ovi ostaju." >&2
+  sh "$(dirname "$0")/pocisti.sh" || echo "posalji: pocisti nije uspeo; worktree-ovi ostaju." >&2
 else
   echo "posalji: #$pr čeka održavaoca."
 fi
