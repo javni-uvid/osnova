@@ -1,0 +1,42 @@
+/* Javni uvid's own page. Everything the family shares comes from osnova.css (shared/design/); here is only this
+   page's layout. No colour of its own: the page is the family's base, black on white. */
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--ju-bg); color: var(--ju-fg); font: var(--ju-t-3)/1.55 var(--ju-sans); }
+a { color: var(--ju-fg); text-underline-offset: 2px; }
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 8px; top: 8px; background: var(--ju-bg); padding: .5rem .8rem; z-index: 2; }
+:focus-visible { outline: 3px solid var(--ju-fg); outline-offset: 2px; }
+
+.top { display: flex; flex-wrap: wrap; gap: 0 2rem; align-items: baseline; justify-content: space-between;
+  max-width: var(--ju-wide); margin: 0 20px; padding: 1rem 0 .6rem; border-bottom: 3px solid var(--ju-fg); }
+@media (min-width: 1120px) { .top { margin: 0 auto; } }
+.brand { display: inline-flex; align-items: center; gap: .5rem; font: 700 var(--ju-t-7)/1.2 var(--ju-serif);
+  letter-spacing: -.01em; text-decoration: none; }
+.top nav { display: flex; flex-wrap: wrap; gap: 0 1.6rem; }
+.top nav a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; font-weight: 500; }
+.top nav a:hover { text-decoration: underline; }
+.top .script-switch { color: var(--ju-muted); }
+
+main, .foot { max-width: var(--ju-wide); margin: 0 auto; padding: 0 20px; }
+main > * { max-width: 68ch; }
+h1 { font: 700 var(--ju-t-h1)/1.15 var(--ju-serif); letter-spacing: -.01em; margin: 2.2rem 0 .8rem; max-width: 22ch; }
+h2 { font: 700 var(--ju-t-6)/1.2 var(--ju-serif); margin: 2.6rem 0 .8rem; scroll-margin-top: 1rem; }
+.lead { font-size: var(--ju-t-5); line-height: 1.45; margin: 0; }
+
+main > .sites { max-width: none; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
+.site { display: flex; flex-direction: column; gap: .5rem; background: var(--ju-card); border-top: 3px solid var(--ju-fg); padding: 1.1rem 1.2rem 1.2rem; }
+.site h3 { font: 700 var(--ju-t-6)/1.2 var(--ju-serif); margin: 0; }
+.site h3 a { text-decoration: none; }
+.site h3 a:hover { text-decoration: underline; }
+.site p { margin: 0; }
+.site .source { color: var(--ju-muted); font-size: var(--ju-t-2); }
+.site .go { margin-top: auto; padding-top: .4rem; }
+.site .go a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }
+
+.principles { padding-left: 1.3rem; }
+.principles li { margin: 0 0 .8rem; padding-left: .2rem; }
+.note { color: var(--ju-muted); border-left: 3px solid var(--ju-line); padding-left: .9rem; }
+
+.foot { padding-bottom: 3rem; }
+.fine { color: var(--ju-muted); font-size: var(--ju-t-1); margin: 1rem 0 0; }
