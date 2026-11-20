@@ -1,0 +1,6 @@
+# zizmor (tools/proveri.sh). The template's workflow commits and pushes the copy, so its checkout keeps the token
+# on purpose.
+rules:
+  artipacked:
+    ignore:
+      - osnova.yml

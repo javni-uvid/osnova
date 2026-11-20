@@ -1,0 +1,10 @@
+# Dependabot: once a month, one pull request for the workflows' actions here and in template/ (pinned to commits).
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directories: ["/", "/template"]
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]
