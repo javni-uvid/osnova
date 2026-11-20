@@ -1,6 +1,6 @@
 # osnova
 
-Zajednička osnova projekata organizacije [javni-uvid](https://github.com/javni-uvid): načela koja svaki projekat
+Zajednička osnova projekata [Javnog uvida](https://javni-uvid.github.io/osnova/) (organizacija [javni-uvid](https://github.com/javni-uvid)): načela koja svaki projekat
 obećava čitaocima, pravila rada, bezbednost i alati. Projekti ostaju samostalni repozitorijumi i odavde preuzimaju
 kopiju.
 
@@ -20,6 +20,8 @@ work, security, and the tools. Each project stays a repository of its own and ta
 | `shared/work.md` | How to work in a project: a branch and a pull request per task, tests, decisions written down. |
 | `shared/security.md` | What every project guards and how; the settings a new repository gets. |
 | `shared/tools/` | `posalji.sh` (a task's branch to `main`), `pocisti.sh` (merged worktrees removed), the pre-push hook. |
+| `shared/design/` | The family's look, the same on every site: font, base colours, the bar and the footer block that link the sites, and the list of the sites. |
+| `site/` | Javni uvid's own page, https://javni-uvid.github.io/osnova/: the sites and the principles, in Serbian. |
 | `template/` | What a project copies once: the **osnova** workflow, and `tools/` whose scripts only call the copy's. |
 | `projects.txt` | The projects that take the copy. |
 
@@ -40,3 +42,5 @@ here. Where it differs on purpose, it says so with the date of the maintainer's 
    settings").
 2. `template/` copied in; the project added to `projects.txt` and the table above.
 3. Its AGENTS.md: what the project is, its own principles, its sources, the map of its decisions' files.
+4. Its site takes the family's look (`shared/design/README.md`), and the site is added to
+   `shared/design/sites.json`, which puts it on Javni uvid's page and on every other site.

@@ -1,0 +1,51 @@
+# Builds Javni uvid's own page (site/, with the family's look from shared/design/) and publishes it to GitHub
+# Pages: https://javni-uvid.github.io/osnova/. On a push to main that changes the page or the look, and by hand.
+# The build needs only Python's own library; it fails, and nothing is published, when a page would load anything
+# from another server.
+name: pages
+
+on:
+  push:
+    branches: [main]
+    paths: ["site/**", "shared/design/**", ".github/workflows/pages.yml"]
+  workflow_dispatch:
+
+permissions: {}  # each job asks for what it needs
+
+concurrency:
+  group: pages
+  cancel-in-progress: false  # a newer run waits for the current deploy instead of cutting it off
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: read  # configure-pages reads the Pages settings
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Build
+        run: python3 site/build.py --out _site
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d  # v6.0.0
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9  # v5.0.0
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    permissions:
+      pages: write     # publish
+      id-token: write  # prove the publishing is this repository's
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346  # v5.0.1
+        with:
+          timeout: 1800000  # GitHub sometimes takes over 10 minutes "syncing files"
