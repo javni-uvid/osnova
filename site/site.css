@@ -18,7 +18,8 @@ a { color: var(--ju-fg); text-underline-offset: 2px; }
 .top nav a:hover { text-decoration: underline; }
 .top .script-switch { color: var(--ju-muted); }
 
-main, .foot { max-width: var(--ju-wide); margin: 0 auto; padding: 0 20px; }
+/* As wide as the header and the bar: their width plus the 20 px each side. */
+main, .foot { max-width: calc(var(--ju-wide) + 40px); margin: 0 auto; padding: 0 20px; }
 main > * { max-width: 68ch; }
 h1 { font: 700 var(--ju-t-h1)/1.15 var(--ju-serif); letter-spacing: -.01em; margin: 2.2rem 0 .8rem; max-width: 22ch; }
 h2 { font: 700 var(--ju-t-6)/1.2 var(--ju-serif); margin: 2.6rem 0 .8rem; scroll-margin-top: 1rem; }
