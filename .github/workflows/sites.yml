@@ -1,0 +1,38 @@
+# Weekly: ask for each municipality's site in the family's list (shared/data/municipalities.csv); a domain that
+# doesn't answer is replaced by a spelling of it that does, the old one named in the note (tools/sites.py look).
+# It commits straight to main, as a project's data workflows do; the projects get the list with the next copy.
+name: sites
+
+on:
+  schedule:
+    - cron: "17 4 * * 1"  # Monday, before izborna-analiza's watch on Tuesday
+  workflow_dispatch:
+
+permissions: {}  # each job asks for what it needs
+
+concurrency:
+  group: sites
+  cancel-in-progress: false
+
+jobs:
+  look:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: write  # commits shared/data/municipalities.csv
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Look at the sites
+        run: |
+          python tools/sites.py look
+          python tools/sites.py check
+          git add shared/data/municipalities.csv
+          if git diff --cached --quiet; then echo "sites: every domain as it was"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "Data: municipal sites found by the sites workflow"
+          git push -q
+          git show --stat --oneline HEAD | tail -4
