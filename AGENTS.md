@@ -9,7 +9,11 @@ repository's.
   agent once **test** passes.
 - **What goes here:** a rule, a guard or a tool that holds for every project. What only one project needs stays
   in that project, even when it is well made. Before moving something here, read how the other projects do it
-  (`projects.txt`): if they differ for a reason, it isn't shared.
+  (`projects.txt`): if they differ for a reason, it isn't shared. Data go here when more than one project needs
+  the same list (`shared/data/`); a project keeps what only it needs about the same thing, under the same key.
+- **`shared/data/municipalities.csv` is changed here only,** by the **sites** workflow (weekly, straight to
+  `main`, as a project's data workflows) or by a pull request with the source in the note.
+  `uv run --no-project tools/sites.py check` keeps its shape; `look` is what the workflow runs.
 - **Javni uvid's own page is here too** (`site/`, published by **pages** at https://javni-uvid.github.io/osnova/):
   what the family is, its sites and the principles in Serbian, in both scripts. Its text of the principles
   follows `shared/principles.md`: a change of one is a change of the other, and the maintainer's.
@@ -53,3 +57,9 @@ repository's.
   is the site most read, mostly on phones, and a system font downloads nothing. A site keeps its own colours
   only where they carry its data. A third site links the others through the bar and the footer block, the same
   markup everywhere (`shared/design/family.html`).
+- **The list of municipalities and their sites is the family's, kept here** (22 Nov 2026, the maintainer's
+  decision): izborna-analiza made it, ucestvuj brought a copy of it by a workflow of its own, and nabavke will
+  need it too.
+  The search for a domain that doesn't answer moved here with it, from izborna-analiza's weekly watch, so that
+  the list is written in one place only and by this repository's own token. The municipality's code is the key
+  every project names a municipality by.
