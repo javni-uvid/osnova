@@ -20,7 +20,7 @@ work, security, and the tools. Each project stays a repository of its own and ta
 | `shared/principles.md` | The promises every project makes to its readers. Changed by the maintainer only. |
 | `shared/work.md` | How to work in a project: a branch and a pull request per task, tests, decisions written down. |
 | `shared/security.md` | What every project guards and how; the settings a new repository gets. |
-| `shared/tools/` | `posalji.sh` (a task's branch to `main`), `pocisti.sh` (merged worktrees removed), the pre-push hook. |
+| `shared/tools/` | `posalji.sh` (a task's branch to `main`), `pocisti.sh` (merged worktrees removed, but for those an agent is in: `agenti.py`), the pre-push hook. |
 | `shared/design/` | The family's look, the same on every site: font, base colours, the bar and the footer block that link the sites, and the list of the sites. |
 | `shared/data/` | What more than one project needs, kept once: the municipalities (the code every project names one by) and their sites, looked at weekly by the **sites** workflow (`tools/sites.py`). |
 | `site/` | Javni uvid's own page, https://javni-uvid.github.io/osnova/: the sites and the principles, in Serbian. |
